@@ -1,0 +1,1 @@
+- [ ] Embed [wasm3](https://github.com/wasm3/wasm3/blob/main/platforms/cpp/README.md)
