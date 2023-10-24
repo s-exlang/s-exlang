@@ -1,1 +1,2 @@
+- [ ] Use [fasmg](https://board.flatassembler.net/topic.php?t=21212) as assembler
 - [ ] Embed [wasm3](https://github.com/wasm3/wasm3/blob/main/platforms/cpp/README.md)
