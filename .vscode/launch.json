@@ -12,17 +12,17 @@
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}/Deployment",
-        "preLaunchTask": "Build s-exlang"
+        "preLaunchTask": "Build sx"
       },
       {
-        "name": "(nob) Launch",
+        "name": "(knob) Launch",
         "type": "cppvsdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/nob.exe",
+        "program": "${workspaceFolder}/knob.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}",
-        "preLaunchTask": "Build nob"
+        "preLaunchTask": "Build knob"
       }
     ]
         

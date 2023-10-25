@@ -4,27 +4,29 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build nob",
+            "label": "Build knob",
             "type": "shell",
-            "command": "zig",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
+            "command": "./zig/zig.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
             "args": [
                 "cc",
                 "-std=c11",
                 "--debug",
                 "-fno-sanitize=undefined",
                 "-fno-omit-frame-pointer",
+                "-I./knob",
+                "-lkernel32","-lwinmm", "-lgdi32",
                 "-target",
                 "x86_64-windows",
-                "nob.c",
+                "knob.c",
                 "-o",
-                "nob.exe"
+                "knob.exe"
             ],
         },
         {
-            "label": "Build game",
+            "label": "Build sx",
             "type": "shell",
-            "command": "${workspaceFolder}/nob.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
-            "dependsOn": "Build nob",
+            "command": "${workspaceFolder}/knob.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
+            "dependsOn": "Build knob",
             "group": {
                 "kind": "build",
                 "isDefault": true
