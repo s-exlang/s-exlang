@@ -1,2 +1,5 @@
 - [ ] Use [fasmg](https://board.flatassembler.net/topic.php?t=21212) as assembler
-- [ ] Embed [wasm3](https://github.com/wasm3/wasm3/blob/main/platforms/cpp/README.md)
+    - [ ] Ressources for [fasm](https://board.flatassembler.net/topic.php?t=19389)
+    - [ ] Compile the [DLL](https://github.com/tgrysztar/fasmg/blob/177b011a99667378ce801c859586393141ed3254/packages/x86/projects/calculator/make.bat#L3) for use with the compiler 
+    - [ ] Example [video](https://www.youtube.com/watch?v=FyhxH-QuEhM)
+    - [ ] Functions of DLL, [definitions](https://board.flatassembler.net/topic.php?t=21212)
