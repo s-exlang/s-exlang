@@ -3,3 +3,5 @@
     - [ ] Compile the [DLL](https://github.com/tgrysztar/fasmg/blob/177b011a99667378ce801c859586393141ed3254/packages/x86/projects/calculator/make.bat#L3) for use with the compiler 
     - [ ] Example [video](https://www.youtube.com/watch?v=FyhxH-QuEhM)
     - [ ] Functions of DLL, [definitions](https://board.flatassembler.net/topic.php?t=21212)
+    - [ ] Do research on [binary formats](https://board.flatassembler.net/topic.php?t=20690#205881)
+        - [ ] Try to generate [APE binaries](https://justine.lol/ape.html)
