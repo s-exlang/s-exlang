@@ -7,7 +7,7 @@
             "label": "Build knob",
             "type": "shell",
             "windows":{
-                "command": "./zig/zig.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
+                "command": "zig"/*"./zig/zig.exe"*/,//"${workspaceFolder}/Tools/windows_x64/zig.exe",
                 "args": [
                     "cc",
                     "-std=c11",

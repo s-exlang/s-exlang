@@ -7,7 +7,7 @@
       {
         "name": "(game) Launch",
         "request": "launch",
-        "type": "cppdbg",
+        "type": "cppvsdbg",
         "windows": {
           "program": "${workspaceFolder}/Deployment/sx.exe",
         },
@@ -21,7 +21,7 @@
       },
       {
         "name": "(knob) Launch",
-        "type": "cppdbg",
+        "type": "cppvsdbg",
         "request": "launch",
         "windows": {
           "program": "${workspaceFolder}/knob.exe",
