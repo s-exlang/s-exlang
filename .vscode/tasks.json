@@ -6,26 +6,50 @@
         {
             "label": "Build knob",
             "type": "shell",
-            "command": "./zig/zig.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
-            "args": [
-                "cc",
-                "-std=c11",
-                "--debug",
-                "-fno-sanitize=undefined",
-                "-fno-omit-frame-pointer",
-                "-I./knob",
-                "-lkernel32","-lwinmm", "-lgdi32",
-                "-target",
-                "x86_64-windows",
-                "knob.c",
-                "-o",
-                "knob.exe"
-            ],
+            "windows":{
+                "command": "./zig/zig.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
+                "args": [
+                    "cc",
+                    "-std=c11",
+                    "--debug",
+                    "-fno-sanitize=undefined",
+                    "-fno-omit-frame-pointer",
+                    "-I./knob",
+                    "-lkernel32","-lwinmm", "-lgdi32",
+                    "-target",
+                    "x86_64-windows",
+                    "knob.c",
+                    "-o",
+                    "knob.exe"
+                ],
+            },
+            "linux":{
+                "command": "zig",
+                "args": [
+                    "cc",
+                    "-std=c11",
+                    "--debug",
+                    "-fno-sanitize=undefined",
+                    "-fno-omit-frame-pointer",
+                    "-I./knob",
+                    "-target",
+                    "x86_64-linux",
+                    "knob.c",
+                    "-o",
+                    "knob.out"
+                ],
+            }
+
         },
         {
             "label": "Build sx",
             "type": "shell",
-            "command": "${workspaceFolder}/knob.exe",//"${workspaceFolder}/Tools/windows_x64/zig.exe",
+            "windows":{
+                "command": "${workspaceFolder}/knob.exe",
+            },
+            "linux":{
+                "command": "${workspaceFolder}/knob.out",
+            },
             "dependsOn": "Build knob",
             "group": {
                 "kind": "build",

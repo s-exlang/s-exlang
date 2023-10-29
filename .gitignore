@@ -1,3 +1,7 @@
 zig
+Deployment/**
+!Deployment/examples
+!Deployment/examples/**
 *.exe
+*.out
 *.pdb

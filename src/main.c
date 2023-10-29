@@ -6,6 +6,7 @@
 // atom -> number | name | string | operator
 
 typedef enum {
+    ATOM_NULL,
     ATOM_NUM,
     ATOM_STR,
     ATOM_OP,
@@ -13,6 +14,16 @@ typedef enum {
     ATOM_LIST,
     TYPE_COUNT
 } Type;
+
+static_assert(TYPE_COUNT == 6);
+char* TYPE_STRINGS[] = {
+    "Null",
+    "Number",
+    "String",
+    "Operator",
+    "Identifier",
+    "List"
+};
 
 typedef struct List List;
 typedef struct Atom Atom_t;
@@ -62,6 +73,7 @@ void parse_text(char* text,size_t len,Atom_t* root){
             }
             case '+':{
                 Atom_t op = {0};
+                op.content = &text[i];
                 op.type = ATOM_OP;
                 op.c_len = 1;
                 knob_da_append(&par->sub_atoms,op);
@@ -101,6 +113,20 @@ void parse_text(char* text,size_t len,Atom_t* root){
     }
 }
 
+void print_ast(Atom_t* root,int level){
+    char indents[64] = {0};
+    char temp[64] = {0};
+    for(int i = 0; i < level;++i){
+        indents[i] = ' ';
+    }
+    if(root->c_len > 0){
+        memcpy(temp,root->content,root->c_len);
+    }
+    knob_log(KNOB_INFO,"%sAtom of type: %s with content %s",indents,TYPE_STRINGS[root->type],temp);
+    for(int i =0; i < root->sub_atoms.count;++i){
+        print_ast(&root->sub_atoms.items[i],level+1);
+    }
+}
 int main(int argc,char** argv){
     int result = 0;
     Atom_t root = {0};
@@ -110,6 +136,8 @@ int main(int argc,char** argv){
         knob_return_defer(false);
     }
     parse_text(sb.items,sb.count,&root);
+    
+    print_ast(&root,0);
     
 defer:
     if(root.type == TYPE_COUNT){

@@ -6,9 +6,14 @@
     "configurations": [
       {
         "name": "(game) Launch",
-        "type": "cppvsdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/Deployment/sx.exe",
+        "type": "cppdbg",
+        "windows": {
+          "program": "${workspaceFolder}/Deployment/sx.exe",
+        },
+        "linux": {
+          "program": "${workspaceFolder}/Deployment/sx",
+        },
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}/Deployment",
@@ -16,9 +21,14 @@
       },
       {
         "name": "(knob) Launch",
-        "type": "cppvsdbg",
+        "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceFolder}/knob.exe",
+        "windows": {
+          "program": "${workspaceFolder}/knob.exe",
+        },
+        "linux": {
+          "program": "${workspaceFolder}/knob.out",
+        },
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}",
