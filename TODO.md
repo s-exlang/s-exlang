@@ -6,3 +6,4 @@
     - [ ] Functions of DLL, [definitions](https://board.flatassembler.net/topic.php?t=21212)
     - [ ] Do research on [binary formats](https://board.flatassembler.net/topic.php?t=20690#205881)
         - [ ] Try to generate [APE binaries](https://justine.lol/ape.html)
+    - [ ] [Playground](https://github.com/bitRAKE/fasmg_playground) for fasmg with examples(like a live shader editor)

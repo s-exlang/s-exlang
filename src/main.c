@@ -1,6 +1,8 @@
 #define KNOB_IMPLEMENTATION
 #include "knob.h"
 
+#include "fasmg.h"
+
 // list -> '(' expression* ')'
 // expression -> atom | list
 // atom -> number | name | string | operator
@@ -14,8 +16,9 @@ typedef enum {
     ATOM_LIST,
     TYPE_COUNT
 } Type;
-
+#ifdef __linux__//F security on Windows
 static_assert(TYPE_COUNT == 6);
+#endif
 char* TYPE_STRINGS[] = {
     "Null",
     "Number",
@@ -127,13 +130,32 @@ void print_ast(Atom_t* root,int level){
         print_ast(&root->sub_atoms.items[i],level+1);
     }
 }
+#define loadFunc(handle,funcname) funcname = dynlib_loadfunc(handle,#funcname)
 int main(int argc,char** argv){
+    char* err_msg = "";
     int result = 0;
+    char dll_path[260] ={0};
+    snprintf(dll_path,260,".\\fasmg%s",DLL_NAME);
+    void* dll_handle = dynlib_load(dll_path);
+    if(!dll_handle){
+        err_msg = "Assembler loading failed...";
+        knob_return_defer(true);
+    }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wincompatible-function-pointer-types"
+    loadFunc(dll_handle,fasmg_GetVersion);
+    loadFunc(dll_handle,fasmg_Assemble);
+#pragma GCC diagnostic pop
+    if(!fasmg_GetVersion || !fasmg_Assemble){
+        err_msg = "Assembler DLL loaded but could not load functions.";
+        knob_return_defer(true);
+    }
+
     Atom_t root = {0};
     root.type = TYPE_COUNT;
     Knob_String_Builder sb = {0};
     if(!knob_read_entire_file("./examples/add.gc",&sb)){
-        knob_return_defer(false);
+        knob_return_defer(true);
     }
     parse_text(sb.items,sb.count,&root);
     
@@ -142,6 +164,9 @@ int main(int argc,char** argv){
 defer:
     if(root.type == TYPE_COUNT){
         printf("No expression found in files...");
+    }
+    if(result){
+        knob_log(KNOB_ERROR,"%s",err_msg);
     }
     return result;
 }
