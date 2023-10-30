@@ -32,4 +32,4 @@ const char* (*fasmg_GetVersion)(void);
  *
  * @return - Returns the number of reported errors, with 0 indicating a successful assembly. If the returned value is negative, it indicates a fatal error, such as running out of memory or failing to write the output.
  */
-int (*fasmg_Assemble)(char* source_string,char* source_path,mem_region_t output_region,char* output_path, void* out,void* err);
+int (*fasmg_Assemble)(char* source_string,char* source_path,mem_region_t* output_region,char* output_path, void* out,void* err);
